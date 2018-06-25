@@ -12,11 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
-
-import static com.sun.xml.internal.ws.policy.sourcemodel.wspolicy.XmlToken.Optional;
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)

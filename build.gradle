@@ -1,19 +1,24 @@
 buildscript {
 	ext {
 		springBootVersion = '2.0.3.RELEASE'
+        dockerVersion = '0.13.0'
 	}
-	repositories {
-		mavenCentral()
-	}
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-	}
+        classpath("gradle.plugin.com.palantir.gradle.docker:gradle-docker:${dockerVersion}")
+    }
 }
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'com.palantir.docker'
 
 group = 'com.digiup'
 version = '0.0.1-SNAPSHOT'
@@ -33,4 +38,10 @@ dependencies {
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('io.projectreactor:reactor-test')
     testCompile group: 'com.h2database', name: 'h2', version: '1.4.197'
+}
+
+docker {
+    name "${project.group}/${jar.baseName}"
+    files jar.archivePath
+    buildArgs(['JAR_FILE': "${jar.archiveName}"])
 }
