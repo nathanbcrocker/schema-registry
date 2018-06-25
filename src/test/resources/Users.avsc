@@ -1,0 +1,1 @@
+{"name":"Users","namespace":"com.digiup.user","fields":[{"name":"firstName","type":"string"},{"name":"lastName","type":"string"}],"type":"record"}
